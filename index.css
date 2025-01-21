@@ -1,0 +1,66 @@
+/* MARK: Base styles */
+:root {
+  --smoky-black: #0c0c0d;
+  --eerie-black: #19191a;
+  --linen: #f7f1e4;
+  --shocking-pink: #ff5eff;
+  --eucalyptus: #3dff98;
+
+  font-size: 62.5%;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+    monospace;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  color: var(--linen);
+  background-color: var(--smoky-black);
+  border-top: 0.5rem solid var(--eerie-black);
+}
+
+body[data-current-player='X'] {
+  border-top-color: var(--shocking-pink);
+}
+
+body[data-current-player='O'] {
+  border-top-color: var(--eucalyptus);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* MARK: App */
+.app {
+  display: grid;
+  gap: 3.8rem;
+  align-content: center;
+  min-block-size: calc(100vh - 0.5rem);
+  width: min(calc(100% - 4rem), 64rem);
+  margin-inline: auto;
+}
+
+[data-symbol='X'] {
+  color: var(--shocking-pink);
+}
+
+[data-symbol='O'] {
+  color: var(--eucalyptus);
+}
