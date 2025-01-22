@@ -80,3 +80,14 @@ const Game = (() => {
     hasDraw,
   };
 })();
+
+// module to control the DOM manipulation/event listeners
+const DOM = (() => {
+  const init = () => {
+    console.log('Initializing app...');
+  };
+
+  return { init };
+})();
+
+DOM.init();
