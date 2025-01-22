@@ -88,6 +88,7 @@ const Game = (() => {
 const DOM = (() => {
   const init = () => {
     console.log('Initializing app...');
+    addCurrentPlayerIndicator();
     renderPlayers();
     renderGameboard();
   };
@@ -128,6 +129,18 @@ const DOM = (() => {
   const renderGameboard = () => {
     const gameboardDiv = document.querySelector('#gameboard');
     gameboardDiv.insertAdjacentHTML('afterbegin', createGameboardSquares());
+  };
+
+  const addCurrentPlayerIndicator = () => {
+    document.body.dataset.currentPlayer = Game.getCurrentPlayer().symbol;
+  };
+
+  const toggleCurrentPlayerIndicator = () => {
+    const body = document.body;
+    const { currentPlayer } = body.dataset;
+    const playersToggle = { X: 'O', O: 'X' };
+
+    body.dataset.currentPlayer = playersToggle[currentPlayer];
   };
 
   return { init };
