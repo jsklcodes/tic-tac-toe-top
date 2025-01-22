@@ -147,15 +147,54 @@ const DOM = (() => {
     body.dataset.currentPlayer = playersToggle[currentPlayer];
   };
 
+  const renderVictoryMessage = (targetElement, currentPlayer) => {
+    targetElement.textContent = `Congratulations, ${currentPlayer.name} (${currentPlayer.symbol})! You have won the game!`;
+  };
+
+  const renderDrawMessage = targetElement => {
+    targetElement.textContent = `It's a draw! Well played both!`;
+  };
+
+  const renderGameResult = () => {
+    const { hasVictory, hasDraw, getCurrentPlayer } = Game;
+    const gameResultP = document.querySelector('#game-result');
+
+    if (hasVictory()) {
+      renderVictoryMessage(gameResultP, getCurrentPlayer());
+    }
+
+    if (hasDraw()) {
+      renderDrawMessage(gameResultP);
+    }
+  };
+
+  const checkVictoryOrDraw = () => {
+    const { hasVictory, hasDraw, switchCurrentPlayer } = Game;
+
+    if (hasVictory() || hasDraw()) {
+      const gameboardDiv = document.querySelector('#gameboard');
+      gameboardDiv.removeEventListener('click', handleGameboardClicks);
+      toggleCurrentPlayerIndicator();
+      switchCurrentPlayer();
+    }
+
+    renderGameResult();
+  };
+
   const handleGameboardClicks = event => {
     const clickedSquare = event.target;
     const squarePosition = clickedSquare.dataset.index;
     const { makeMove, getCurrentPlayer, switchCurrentPlayer } = Game;
+    const { canCheckVictory } = Gameboard;
 
     makeMove(squarePosition);
     clickedSquare.textContent = getCurrentPlayer().symbol;
     switchCurrentPlayer();
     toggleCurrentPlayerIndicator();
+
+    if (canCheckVictory()) {
+      checkVictoryOrDraw();
+    }
   };
 
   const listenGameboardClicks = () => {
