@@ -64,3 +64,44 @@ button:hover {
 [data-symbol='O'] {
   color: var(--eucalyptus);
 }
+
+/* MARK: Players */
+.players {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* MARK: Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1rem;
+  width: 38rem;
+  height: 38rem;
+  background-color: var(--eerie-black);
+  justify-self: center;
+}
+
+/* MARK: Square */
+.square {
+  display: grid;
+  place-items: center;
+  background-color: var(--smoky-black);
+  font-size: 3.2rem;
+  user-select: none;
+  transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.square:hover {
+  opacity: 85%;
+  cursor: pointer;
+}
+
+/* MARK: Game result */
+.game-result {
+  font-size: 1.5rem;
+  width: min(100%, 60ch);
+  margin-inline: auto;
+  text-align: center;
+}
