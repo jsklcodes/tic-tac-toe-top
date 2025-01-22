@@ -9,6 +9,9 @@ const Gameboard = (() => {
 
   const isGameboardFull = () => gameboard.every(square => square !== '');
 
+  const canCheckVictory = () =>
+    gameboard.filter(symbol => symbol === 'X').length >= 3;
+
   const fillSquare = (position, symbol) => {
     if (gameboard[position] !== '') {
       throw new Error(`The position ${position} is already marked. Try again.`);
@@ -16,7 +19,7 @@ const Gameboard = (() => {
     gameboard[position] = symbol;
   };
 
-  return { getGameboard, isGameboardFull, fillSquare };
+  return { getGameboard, isGameboardFull, canCheckVictory, fillSquare };
 })();
 
 // module to control the game flow
