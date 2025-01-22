@@ -24,6 +24,8 @@ const Game = (() => {
   const players = [Player('Linus', 'X'), Player('Emily', 'O')];
   let currentPlayer = players[0];
 
+  const getPlayers = () => players;
+
   const getCurrentPlayer = () => currentPlayer;
 
   const switchCurrentPlayer = () => {
@@ -73,6 +75,7 @@ const Game = (() => {
   };
 
   return {
+    getPlayers,
     getCurrentPlayer,
     switchCurrentPlayer,
     makeMove,
@@ -85,7 +88,29 @@ const Game = (() => {
 const DOM = (() => {
   const init = () => {
     console.log('Initializing app...');
+    renderPlayers();
     renderGameboard();
+  };
+
+  const createPlayerDivs = () => {
+    const players = Game.getPlayers();
+    const playerDivs = players
+      .map(
+        player => `
+      <div class="player" data-symbol="${player.symbol}">
+        <span class="player__name">${player.name}</span>
+        <span class="player__symbol">(${player.symbol})</span>
+      </div>
+      `
+      )
+      .join('');
+
+    return playerDivs;
+  };
+
+  const renderPlayers = () => {
+    const playersDiv = document.querySelector('#players');
+    playersDiv.insertAdjacentHTML('afterbegin', createPlayerDivs());
   };
 
   const createGameboardSquares = () => {
