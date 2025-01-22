@@ -10,7 +10,33 @@
 
 <body>
 
-  <div class="app"></div>
+  <div class="app">
+    <div class="players">
+      <div class="player" data-symbol="X">
+        <span class="player__name">Linus</span>
+        <span class="player__symbol">(X)</span>
+      </div>
+
+      <div class="player" data-symbol="O">
+        <span class="player__name">Emily</span>
+        <span class="player__symbol">(O)</span>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="square" data-index="0" data-symbol="X">X</div>
+      <div class="square" data-index="1" data-symbol="X">X</div>
+      <div class="square" data-index="2" data-symbol="O">O</div>
+      <div class="square" data-index="3" data-symbol="O">O</div>
+      <div class="square" data-index="4" data-symbol="O">O</div>
+      <div class="square" data-index="5" data-symbol="X">X</div>
+      <div class="square" data-index="6" data-symbol="X">X</div>
+      <div class="square" data-index="7" data-symbol="X">X</div>
+      <div class="square" data-index="8" data-symbol="O">O</div>
+    </div>
+
+    <p class="game-result">The result of the game will be shown here.</p>
+  </div>
 
   <script src="index.js"></script>
 </body>
