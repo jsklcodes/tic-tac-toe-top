@@ -91,6 +91,7 @@ const DOM = (() => {
     addCurrentPlayerIndicator();
     renderPlayers();
     renderGameboard();
+    listenGameboardClicks();
   };
 
   const createPlayerDivs = () => {
@@ -141,6 +142,22 @@ const DOM = (() => {
     const playersToggle = { X: 'O', O: 'X' };
 
     body.dataset.currentPlayer = playersToggle[currentPlayer];
+  };
+
+  const handleGameboardClicks = event => {
+    const clickedSquare = event.target;
+    const squarePosition = clickedSquare.dataset.index;
+    const { makeMove, getCurrentPlayer, switchCurrentPlayer } = Game;
+
+    makeMove(squarePosition);
+    clickedSquare.textContent = getCurrentPlayer().symbol;
+    switchCurrentPlayer();
+    toggleCurrentPlayerIndicator();
+  };
+
+  const listenGameboardClicks = () => {
+    const gameboardDiv = document.querySelector('#gameboard');
+    gameboardDiv.addEventListener('click', handleGameboardClicks);
   };
 
   return { init };
