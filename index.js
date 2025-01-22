@@ -85,6 +85,24 @@ const Game = (() => {
 const DOM = (() => {
   const init = () => {
     console.log('Initializing app...');
+    renderGameboard();
+  };
+
+  const createGameboardSquares = () => {
+    const gameboard = Gameboard.getGameboard();
+    const squares = gameboard
+      .map(
+        (symbol, index) =>
+          `<div class="square" data-index="${index}" data-symbol="${symbol}">${symbol}</div>`
+      )
+      .join('');
+
+    return squares;
+  };
+
+  const renderGameboard = () => {
+    const gameboardDiv = document.querySelector('#gameboard');
+    gameboardDiv.insertAdjacentHTML('afterbegin', createGameboardSquares());
   };
 
   return { init };
